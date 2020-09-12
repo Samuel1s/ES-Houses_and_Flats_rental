@@ -1,0 +1,26 @@
+{
+  "name": "crud-app-es",
+  "version": "1.0.0",
+  "description": "crud para uma simples app para engenharia de software cefet-mg",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Samuel1s/TP.git"
+  },
+  "author": "Samuel Santos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Samuel1s/TP/issues"
+  },
+  "homepage": "https://github.com/Samuel1s/TP#readme",
+  "dependencies": {
+    "axios": "^0.20.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.5"
+  }
+}
