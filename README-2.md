@@ -1,5 +1,10 @@
 # Configurando back-server
 
+Caso ocorra algum erro: 
+Tente executar o node serve.js no terminal, caso dê erro...
+
+rm -rf node_modules e reinstale tudo seguindo os passos.
+
 Após clonar o repositório:
 npm init ------> Para substituir os pacotes node_modules.
 npm i express mongoose axios dotenv cors ------> Ajudará na configuração do servidor.
