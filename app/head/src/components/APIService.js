@@ -30,9 +30,14 @@ export class APIService {
     
     //To create a new post. 
 	createPost(post){
-	console.log(post);
 	const url = `${API_URL}/user/create/`;
 	return axios.post(url,post);
+	}
+
+	createHouse(obj){
+	console.log(obj);
+	const url = `${API_URL}/user/create_house/`;
+	return axios.post(url,obj);
 	}
 
 	updatePost(post){

@@ -10,12 +10,12 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for="post in posts" :key="post.name">
-					<td>{{ post.name }}</td>
+				<tr v-for="post in items" :key="post.rua">
+					<td>{{ post.rua }}</td>
 					<th></th>
 					<td></td>
 					<td>
-						<button class="btn btn-danger" @click="deletePost(post)"> X</button>
+						<button class="btn btn-danger" @click="removeItem(post)"> X</button>
 					</td>
 				</tr>
 			</tbody>
@@ -24,43 +24,29 @@
 </template>
 
 <script>
-	import {APIService} from './APIService';
-	const apiService = new APIService();
+	import { mapState, mapActions } from 'vuex'
+
 
 	export default {
 	name: 'ListPost',
 	components: {},
 
-	data() {
-		return {
-			posts: [],
-			numberOfPosts:0
-		};
+	computed: {
+        ...mapState({
+            items: state => state.items
+        })
 	},
      
 	methods: {
-    
-	getPost(){
-		apiService.getPosts().then((data) => {
-			this.posts = data.data;
-			this.numberOfProducts = data.count;
-		});
-	},
-
-	deletePost(post){
-		apiService.deletePost(post).then((r)=>{
-		if(r.status === 204) {
-			alert("Post deleted");
-			this.$router.go()
-		}
-        })
-	},
+        ...mapActions([
+			'removeItem'
+		]),
 
 	},
 
-	mounted() {
-	this.getPost();
-	},
+	mounted () {
+        this.$store.dispatch('loadItems')
+    },
 
 	}
 </script>
