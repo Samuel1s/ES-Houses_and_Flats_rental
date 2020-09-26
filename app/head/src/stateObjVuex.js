@@ -6,7 +6,6 @@ import VueAxios from 'vue-axios'
 Vue.use(Vuex)
 Vue.use(VueAxios, axios)
 
-
 const API_URL = 'http://localhost:8000';
 
 const store = new Vuex.Store({
@@ -15,12 +14,12 @@ const store = new Vuex.Store({
 	   	    rua: "",
 			bairro: "",
 			uf: "",
-			area: 0,
+			area: null,
 			armario_emb: false,
-			n_suite: 0,
-			n_sala: 0,
-			n_garagem: 0,
-			n_quarto: 0,
+			n_suite: null,
+			n_sala: null,
+			n_garagem: null,
+			n_quarto: null,
 			descricao: ""
 		},
 
@@ -83,6 +82,11 @@ const store = new Vuex.Store({
         	    .delete(`${url}${item._id}`)
         	    .then(response => {commit('DELETE_Items', item)})
         }
+        /*//To get especfic post.
+    getPost(post) {
+        const url = `${API_URL}/user/post/${post._id}`;
+        return axios.get(url).then(response => response.data);
+    }*/
     }
 })
 

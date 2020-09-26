@@ -10,3 +10,6 @@ npm install --save axios vue-axios
 
 Configuração do Vue-Material:
 npm install vue-material --save
+
+Configuração do Vue-Router: 
+npm intall vue-router

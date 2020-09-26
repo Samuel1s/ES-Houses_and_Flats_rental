@@ -1,13 +1,12 @@
 const mongoose = require("mongoose");
 
+// Construção do JSON casa.
 const PostSchema = mongoose.Schema({
   name: {
     type: String,
-    required: true,
-    unique: true,
-    trim: true,
-    minlength: 3
+    lowercase: true
   },
+
 });
 
 module.exports = mongoose.model("Post", PostSchema);

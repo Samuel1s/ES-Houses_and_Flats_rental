@@ -19,8 +19,6 @@ const HouseSchema = mongoose.Schema({
 
   area: {
     type: Number, 
-    min: 1, 
-    max: 4
   },
 
    armario_emb: {

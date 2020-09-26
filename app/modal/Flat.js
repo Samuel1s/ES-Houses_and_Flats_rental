@@ -19,8 +19,6 @@ const FlatSchema = mongoose.Schema({
 
   area: {
     type: Number, 
-    min: 1, 
-    max: 3
   },
 
   n_suite: {
