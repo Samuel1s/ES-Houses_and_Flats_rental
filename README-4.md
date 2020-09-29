@@ -13,3 +13,6 @@ npm install vue-material --save
 
 Configuração do Vue-Router: 
 npm intall vue-router
+
+Configuração da validação do formulário:
+npm i vee-validate --save

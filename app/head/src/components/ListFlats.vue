@@ -1,10 +1,11 @@
 <template>
 	<md-content id="view-document">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<div id="view-listHouses">
-			<md-list v-for="(item, i) in houses" :key="item.rua" :md-expand-single="expandSingle">
+			<md-list v-for="(item, i) in flats" :key="item.rua" :md-expand-single="expandSingle">
 	            <div id="item-part">  
 		            <md-list-item id="list-width"  md-expand >
-			            <md-icon>home</md-icon>
+			            <md-icon class="fa fa-building"></md-icon>
 			            <span class="info-1">{{item.rua}}</span>
 			            <span class="info-2">{{item.bairro}}</span>
 			            <span class="info-3">{{item.uf}}</span>
@@ -27,6 +28,12 @@
 				                <md-list-item class="md-inset">Número de Suítes: {{item.n_suite}}
 				                </md-list-item>
 				            </div>  
+				             <div id="item-part">
+				             	<md-list-item class="md-inset">Número de Salas de Jantar: {{item.n_sala_jantar}}
+				                </md-list-item>
+				             	<md-list-item class="md-inset" :class="transformData2(item.portaria_24h, i)">Portaria 24 horas: {{value_portaria[i]}}</md-list-item>
+				             	<md-list-item class="md-inset">Valor do condomínio: {{item.valor_cond}}</md-list-item>
+				            </div>
 				            <div id="item-part">
 				                <md-list-item class="md-inset">Informações adicionais: {{item.descricao}}</md-list-item>
 				            </div>     
@@ -37,7 +44,7 @@
 		                <md-button class="md-icon-button md-accent" @click="active = true">
 			        		<md-icon>delete</md-icon>
 			        	</md-button>
-			        	<md-button class="md-icon-button md-primary" @click="selectHouse(item); $router.push('updateHouse')">
+			        	<md-button class="md-icon-button md-primary" @click="selectFlat(item); $router.push('updateFlat')">
 			        		<md-icon>edit</md-icon>
 			        	</md-button>
 		            </md-list-item> 
@@ -49,12 +56,12 @@
 					    md-confirm-text="Confimar"
 					    md-cancel-text="Cancelar"
 					    @md-cancel="onCancel"
-					    @md-confirm="removeHouse(item); loadHouses(); CLEAR_Arr()"
+					    @md-confirm="removeFlat(item); loadFlats(); CLEAR_Arr()"
 					    />      
 	        </md-list>
 	    </div>
 	    <div id="align-fab">
-			<md-button class="md-icon-button md-raised md-primary" @click="$router.push('addHouses')">
+			<md-button class="md-icon-button md-raised md-primary" @click="$router.push('addFlats')">
 		        <md-icon>add</md-icon>  
 		    </md-button>
 	    </div>
@@ -80,6 +87,7 @@
 	export default {
 		data: () => ({
 			value_armario: [],
+			value_portaria: [],
 			expandSingle: false,
 	        active: false,
 	        value: null,
@@ -89,13 +97,13 @@
 
 		computed: {
 	        ...mapState([
-	        	'houses'
+	        	'flats'
 	        ])
 		},
 	     
 		methods: {
 	        ...mapActions([
-				'removeHouse', 'loadHouses', 'selectHouse'
+				'removeFlat', 'loadFlats', 'selectFlat'
 			]),
 
 			...mapMutations([
@@ -111,11 +119,18 @@
                     this.value_armario[i] = 'Não'
                 else
                 	this.value_armario[i] = 'Sim'
+	        },
+
+	        transformData2(data, i) {
+	        	if (data == false) 
+                    this.value_portaria[i] = 'Não'
+                else
+                	this.value_portaria[i] = 'Sim'
 	        }
 		},
 
 		mounted () {
-	        this.$store.dispatch('loadHouses')
+	        this.$store.dispatch('loadFlats')
 	    },
 	}
 </script>

@@ -2,6 +2,11 @@ const mongoose = require("mongoose");
 
 // Construção do JSON casa.
 const FlatSchema = mongoose.Schema({
+  cidade: {
+    type: String,
+    lowercase: true
+  },
+
   rua: {
     type: String,
     lowercase: true
@@ -21,7 +26,17 @@ const FlatSchema = mongoose.Schema({
     type: Number, 
   },
 
-  n_suite: {
+  armario_emb: {
+    type: Boolean,
+  },
+
+  n_garagem: {
+    type: Number, 
+    min: 1, 
+    max: 3,
+  },
+
+  n_quarto: {
     type: Number, 
     min: 1, 
     max: 3
@@ -33,16 +48,18 @@ const FlatSchema = mongoose.Schema({
     max: 3
   },
 
-  n_quarto: {
+  n_suite: {
     type: Number, 
-    min: 1, 
-    max: 3
   },
-
-  n_garagem: {
+  
+  n_sala_jantar: {
     type: Number, 
     min: 1, 
-    max: 3,
+    max: 4
+  },
+  
+  portaria_24h: {
+    type: Boolean,
   },
 
   valor_cond: {
@@ -50,17 +67,7 @@ const FlatSchema = mongoose.Schema({
     min: 1, 
     max: 4
   },
-
-  armario_emb: {
-    type: Boolean,
-    required: true
-  },
-
-  portaria_24h: {
-    type: Boolean,
-    required: true
-  },
-
+  
   descricao: {
   	type: String
   },

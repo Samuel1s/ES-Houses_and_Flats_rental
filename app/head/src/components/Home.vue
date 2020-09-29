@@ -8,13 +8,12 @@
 
                 <md-card-area>
                     <md-card-header>
-                        <span class="md-title">As melhores casas da Região.</span>
-                        <span class="md-subhead">Cadastre sua casa ou consulte nossa lista.</span>
+                        <span class="md-title">As melhores casas da região.</span>
+                        <span class="md-subhead">Consulte nossa lista e cadastre seu imóvel já!</span>
                     </md-card-header>
 
                     <md-card-actions>
-                        <md-button @click="$router.push('/listHouses')">Lista</md-button>
-                        <md-button @click="$router.push('/addHouses')">Cadastre</md-button>
+                        <md-button @click="CLEAR_Arr(); $router.push('/listHouses')">Lista</md-button>
                     </md-card-actions>
                 </md-card-area>
             </md-card-media-cover>
@@ -28,13 +27,12 @@
 
                 <md-card-area>
                     <md-card-header>
-                        <span class="md-title">Without text background</span>
-                        <span class="md-subhead">I bet you can't read this</span>
+                        <span class="md-title">Os melhores AP's da região.</span>
+                        <span class="md-subhead">Consulte nossa lista e cadastre seu imóvel já!</span>
                     </md-card-header>
 
                     <md-card-actions>
-                        <md-button>Neither this</md-button>
-                        <md-button>Or this</md-button>
+                        <md-button @click="CLEAR_Arr(); $router.push('/listFlats')">Lista</md-button>
                     </md-card-actions>
                 </md-card-area>
             </md-card-media-cover>
@@ -47,6 +45,8 @@
     import { MdCard } from 'vue-material/dist/components'
     import 'vue-material/dist/vue-material.min.css'
     import 'vue-material/dist/theme/default.css'
+
+    import { mapMutations } from 'vuex'
     
     Vue.use(MdCard)
 
@@ -54,7 +54,13 @@
         name: 'HelloWorld',
         props: {
             msg: String
-        }
+        },
+
+        methods: {
+           ...mapMutations([
+                'CLEAR_Arr'
+            ]),
+        },
     }
 </script>
 

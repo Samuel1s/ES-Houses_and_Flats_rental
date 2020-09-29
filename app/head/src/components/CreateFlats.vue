@@ -1,32 +1,33 @@
 <template>
 	<md-content id="content" class="md-elevation-2">
-		<h1 class="md-title">Cadastro de Casas</h1>
+		<h1 class="md-title">Cadastro de Apartamentos</h1>
 			<form @submit.prevent="submit">
-				 <div id="slice">
+				<div id="slice">
 					<md-field :class="messageClass">
 						<label>Cidade</label>
-						<md-input v-model.lazy="house.cidade" maxlength="40" md-counter="40" required 
+						<md-input v-model.lazy="flat.cidade" maxlength="40" md-counter="40" required 
 						@change="validateCidade($event.target.value)"></md-input>
 						<span id="alert" class="md-caption" v-if="!$v.vl_cidade.required && $v.vl_cidade.$dirty">Campo obrigatório.</span>
 					    <span id="alert" class="md-caption" v-if="!$v.vl_cidade.alpha">Digite apenas letras.
 					    </span>
 					</md-field>
 
-					<md-autocomplete :class="messageClass" v-model.lazy="house.uf" :md-options="estados" md-dense required>
+					<md-autocomplete :class="messageClass" v-model.lazy="flat.uf" :md-options="estados" md-dense required>
 		                <label>UF</label>
 		            </md-autocomplete>
 				</div>
+
 			    <div id="slice">
 					<md-field :class="messageClass">
 						<label>Rua</label>
-						<md-input v-model.lazy="house.rua" maxlength="40" md-counter="40" required 
+						<md-input v-model.lazy="flat.rua" maxlength="40" md-counter="40" required 
 						@change="validateRua($event.target.value)"></md-input>
 						<span id="alert" class="md-caption" v-if="!$v.vl_rua.required && $v.vl_rua.$dirty">Campo obrigatório.</span>
 					    <span id="alert" class="md-caption" v-if="!$v.vl_rua.alpha">Digite apenas letras.
 					    </span>
 					</md-field>
 
-					<md-autocomplete :class="messageClass" v-model.lazy="house.bairro" :md-options="neighborhoods" md-dense required>
+					<md-autocomplete :class="messageClass" v-model.lazy="flat.bairro" :md-options="neighborhoods" md-dense required>
 		                <label>Bairro</label>
 		            </md-autocomplete>
 				</div>
@@ -34,19 +35,19 @@
 				<div id="slice">
 		            <md-field :class="messageClass">
 						<label>Área</label>
-						<md-input v-model.number="house.area" maxlength="4" md-counter="4" required
+						<md-input v-model.number="flat.area" maxlength="4" md-counter="4" required
 						@change="validateArea($event.target.value)"></md-input>
 						<span id="alert" class="md-caption" v-if="submitStatus && !$v.vl_area.required && $v.vl_area.$dirty">Campo obrigatório.</span>
 					</md-field>
 				    
 		            <div class="align">
 						<label>Armário embutido</label>
-						<md-switch v-model.lazy="house.armario_emb" class="md-primary"></md-switch>
+						<md-switch v-model.lazy="flat.armario_emb" class="md-primary"></md-switch>
 	                </div>
 	                
 					<md-field :class="messageClass">
 						<label>Quantas vagas de Garagem?</label>
-						<md-input v-model.number="house.n_garagem" maxlength="4" md-counter="4" required @change="validateGaragem($event.target.value)"></md-input>
+						<md-input v-model.number="flat.n_garagem" maxlength="4" md-counter="4" required @change="validateGaragem($event.target.value)"></md-input>
 						<span id="alert" class="md-caption" v-if="!$v.vl_garagem.required && $v.vl_garagem.$dirty">Campo obrigatório.</span>
 					</md-field>
 				</div>
@@ -54,28 +55,49 @@
 				<div id="slice">
 					<md-field :class="messageClass">
 						<label>Quantos Quartos?</label>
-						<md-input v-model.number="house.n_quarto" maxlength="4" md-counter="4" required
+						<md-input v-model.number="flat.n_quarto" maxlength="4" md-counter="4" required
 						@change="validateQuarto($event.target.value)"></md-input>
 						<span id="alert" class="md-caption" v-if="!$v.vl_quarto.required && $v.vl_quarto.$dirty">Campo obrigatório.</span>
 					</md-field>
 					
 					<md-field :class="messageClass">
 						<label>Quantas Salas?</label>
-						<md-input v-model.number="house.n_sala" maxlength="4" md-counter="4" required
+						<md-input v-model.number="flat.n_sala" maxlength="4" md-counter="4" required
 						@change="validateSala($event.target.value)"></md-input>
 						<span id="alert" class="md-caption" v-if="!$v.vl_sala.required && $v.vl_sala.$dirty">Campo obrigatório.</span>
 					</md-field>
 
 					<md-field :class="messageClass">
 						<label>Quantas Suítes?</label>
-						<md-input v-model.number="house.n_suite" maxlength="4" md-counter="4">
+						<md-input v-model.number="flat.n_suite" maxlength="4" md-counter="4">
 						</md-input>
+					</md-field>
+				</div>	
+
+				<div id="slice">
+					<md-field :class="messageClass">
+						<label>Quantos Salas de Jantar?</label>
+						<md-input v-model.number="flat.n_sala_jantar" maxlength="4" md-counter="4" required
+						@change="validateSJantar($event.target.value)"></md-input>
+						<span id="alert" class="md-caption" v-if="!$v.vl_sala_j.required && $v.vl_sala_j.$dirty">Campo obrigatório.</span>
+					</md-field>
+					
+					<div class="align">
+						<label>Portaria 24 horas: </label>
+						<md-switch v-model.lazy="flat.portaria_24h" class="md-primary"></md-switch>
+	                </div>
+
+					<md-field :class="messageClass">
+						<label>Valor do condomínio</label>
+						<md-input v-model.number="flat.valor_cond" maxlength="4" md-counter="4" required
+						@change="validateValorCond($event.target.value)"></md-input>
+						<span id="alert" class="md-caption" v-if="!$v.vl_cond.required && $v.vl_cond.$dirty">Campo obrigatório.</span>
 					</md-field>
 				</div>	
 				
 				<md-field class="change">
 					<label>Descrições adicionais</label>
-					<md-textarea v-model.lazy="house.descricao" maxlength="300" md-counter="300">
+					<md-textarea v-model.lazy="flat.descricao" maxlength="300" md-counter="300">
 					</md-textarea>
 				</md-field>
 	            
@@ -83,12 +105,11 @@
 	            </md-switch>
 	     
 		        <div class="align-buttons"> 
-
-			   	    <md-button class="md-primary" @click="CLEAR_Arr(); $router.push('listHouses')">Voltar</md-button>
+		        	 <md-button class="md-primary" @click="CLEAR_Arr(); $router.push('listFlats')">Voltar</md-button>
 			   	    <md-button type="reset" class="md-raised">Limpar</md-button>
-			   	    <md-button type="submit" v-bind:class="[ submitStatus == false ? messageClass : (createHouse(house), $router.push('listHouses'))]" class="md-raised md-primary">Criar</md-button>
+			   	    <md-button type="submit" v-bind:class="[ submitStatus == false ? messageClass : (createFlat(flat), $router.push('listFlats'))]" class="md-raised md-primary">Criar</md-button>
 		        </div>  
-		    </form> 
+		    </form>
     </md-content>
 </template>
 
@@ -121,15 +142,16 @@
 		components: {},
 
         data: () => ({
-        	vl_cidade: '', vl_rua: '', vl_area: null, 
+        	vl_cidade: '',vl_rua: '', vl_area: null, 
         	vl_garagem: null, vl_quarto: null, vl_sala: null,
+        	vl_sala_j: null, vl_cond: null,
         	estados: estados_br,
 		    hasMessages: false,
 		    submitStatus: false,
         }),
 
 		computed: {
-	        ...mapState(['house', 'neighborhoods']),
+	        ...mapState(['flat', 'neighborhoods']),
 
 	        messageClass () {
 			    return {
@@ -164,16 +186,26 @@
             vl_sala: {
             	required
             },
+
+            vl_sala_j: {
+                required
+            },
+
+            vl_cond: {
+            	required
+            }
+
         },
 	    
 		methods: {
 			...mapActions([
-				'createHouse',
+				'createFlat'
 			]),
 
 			...mapMutations([
                 'CLEAR_Arr'
 			]),
+
 			validateCidade(value) {
                 this.vl_cidade = value;
                 this.$v.vl_cidade.$touch()
@@ -202,6 +234,16 @@
             validateSala(value) {
                 this.vl_sala = value;
                 this.$v.vl_sala.$touch()
+            },
+
+            validateSJantar(value) {
+                this.vl_sala_j = value;
+                this.$v.vl_sala_j.$touch()
+            },
+
+            validateValorCond(value) {
+                this.vl_cond = value;
+                this.$v.vl_cond.$touch()
             },
 
 			submit() {
