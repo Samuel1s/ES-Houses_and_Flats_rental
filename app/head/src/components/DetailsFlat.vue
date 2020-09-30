@@ -100,7 +100,7 @@
 
                 <md-card-actions>
                     <md-button @click="CLEAR_Arr(); $router.push('listFlats')">Voltar</md-button>
-                    <md-button class="md-primary" @click="updateFlat(flat); $router.push('listFlats')">Atualizar</md-button>
+                    <md-button class="md-primary" @click="CLEAR_Arr(); updateFlat(flat); $router.push('listFlats')">Atualizar</md-button>
                 </md-card-actions>
             </md-card>
         </div>
@@ -108,14 +108,8 @@
 </template>
 
 <script>
-	import Vue from 'vue'
-	import { MdContent, MdCard } from 'vue-material/dist/components'
-
-	Vue.use(MdContent, MdCard)
-
-    import { mapState, mapMutations,mapActions } from 'vuex'
-
     import BR_STATES from '../../Estados.json'
+    import { mapState, mapMutations,mapActions } from 'vuex'
 
     let estados_br = [];
 
@@ -142,12 +136,10 @@
             ...mapMutations([
                 'CLEAR_Arr'
             ]),
-        },
+        }
     }
-
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 	#content {
 		padding: 24px 16px
@@ -156,7 +148,7 @@
     #slice {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: space-between
     }
 
     #content {
@@ -182,7 +174,7 @@
         min-width: 185px;
         padding-top: 28px;
         font-size: 16px;
-        color: rgba(0,0,0,0.54);
+        color: rgba(0,0,0,0.54)
     }
 
     .align-buttons {

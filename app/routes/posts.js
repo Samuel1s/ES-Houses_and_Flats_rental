@@ -50,13 +50,6 @@ router.route('/dl_flat/:id').delete((req, res) => {
     });
 });
 
-//To delete multiple post
-/*router.route('/dl_posts').get((req, res) => {
-    Posts.deleteMany({ _id: list, list: { $in: req.body.list} })
-      .then((resp) => res.status(200).json(resp))
-	    .catch((err) => res.status(400).json("Request Failed"));
-})*/
-
 //To Get a especfic object.
 router.route('/get_house/:id').get((req, res) => {
     Houses.findById(req.params.id)
@@ -82,11 +75,11 @@ router.route('/up_house/:id').put((req, res, next) => {
       resp.bairro = req.body.bairro;
       resp.uf = req.body.uf;
       resp.area = req.body.area;
-      resp.n_suite = req.body.n_suite;
-      resp.n_sala = req.body.n_sala;
-      resp.n_quarto = req.body.n_quarto;
-      resp.n_garagem = req.body.n_garagem;
       resp.armario_emb = req.body.armario_emb;
+      resp.n_garagem = req.body.n_garagem;
+      resp.n_quarto = req.body.n_quarto;
+      resp.n_sala = req.body.n_sala;
+      resp.n_suite = req.body.n_suite;
       resp.descricao = req.body.descricao;
 
       resp.save().then( resp => {
@@ -109,14 +102,14 @@ router.route('/up_flat/:id').put((req, res, next) => {
       resp.bairro = req.body.bairro;
       resp.uf = req.body.uf;
       resp.area = req.body.area;
-      resp.n_suite = req.body.n_suite;
-      resp.n_sala = req.body.n_sala;
-      resp.n_quarto = req.body.n_quarto;
-      resp.n_garagem = req.body.n_garagem;
-      resp.valor_cond = req.body.valor_cond;
       resp.armario_emb = req.body.armario_emb;
+      resp.n_garagem = req.body.n_garagem;
+      resp.n_quarto = req.body.n_quarto;
+      resp.n_sala = req.body.n_sala;
+      resp.n_suite = req.body.n_suite;
       resp.n_sala_jantar = req.body.n_sala_jantar;
-      resp.portaria_24 = req.body.portaria_24;
+      resp.portaria_24h = req.body.portaria_24h;
+      resp.valor_cond = req.body.valor_cond;
       resp.descricao = req.body.descricao;
 
       resp.save().then( resp => {

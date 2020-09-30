@@ -16,17 +16,11 @@
 </template>
 
 <script>
-	import Vue from 'vue'
-	import { MdContent } from 'vue-material/dist/components'
-
-	Vue.use(MdContent)
-
     export default {
     }
 
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 	#content {
 		padding: 24px 16px

@@ -67,7 +67,6 @@ const store = new Vuex.Store({
         neighborhoods: state => {
             return state.neighborhoods;
         }
-
     },
 
     mutations: {
@@ -117,11 +116,11 @@ const store = new Vuex.Store({
         },
 
         DELETE_House (state, deletedHouse) {
-        	state.houses = state.houses.filter(it => it._id);
+        	state.houses = state.houses.filter(deletedHouse => deletedHouse._id);       
         },
 
         DELETE_Flat (state, deletedFlat) {
-            state.flats = state.flats.filter(it => it._id);
+            state.flats = state.flats.filter(deletedFlat => deletedFlat._id);
         },
 
         GET_House (state, getHouse) {
@@ -201,7 +200,6 @@ const store = new Vuex.Store({
                 .get(`${url}${flat._id}`)
                 .then(response => {commit('GET_Flat', response.data)})
         } 
-
     }
 })
 

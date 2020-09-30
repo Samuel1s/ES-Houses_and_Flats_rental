@@ -8,8 +8,6 @@
 						<md-input v-model.lazy="house.cidade" maxlength="40" md-counter="40" required 
 						@change="validateCidade($event.target.value)"></md-input>
 						<span id="alert" class="md-caption" v-if="!$v.vl_cidade.required && $v.vl_cidade.$dirty">Campo obrigatório.</span>
-					    <span id="alert" class="md-caption" v-if="!$v.vl_cidade.alpha">Digite apenas letras.
-					    </span>
 					</md-field>
 
 					<md-autocomplete :class="messageClass" v-model.lazy="house.uf" :md-options="estados" md-dense required>
@@ -22,8 +20,6 @@
 						<md-input v-model.lazy="house.rua" maxlength="40" md-counter="40" required 
 						@change="validateRua($event.target.value)"></md-input>
 						<span id="alert" class="md-caption" v-if="!$v.vl_rua.required && $v.vl_rua.$dirty">Campo obrigatório.</span>
-					    <span id="alert" class="md-caption" v-if="!$v.vl_rua.alpha">Digite apenas letras.
-					    </span>
 					</md-field>
 
 					<md-autocomplete :class="messageClass" v-model.lazy="house.bairro" :md-options="neighborhoods" md-dense required>
@@ -83,7 +79,6 @@
 	            </md-switch>
 	     
 		        <div class="align-buttons"> 
-
 			   	    <md-button class="md-primary" @click="CLEAR_Arr(); $router.push('listHouses')">Voltar</md-button>
 			   	    <md-button type="reset" class="md-raised">Limpar</md-button>
 			   	    <md-button type="submit" v-bind:class="[ submitStatus == false ? messageClass : (createHouse(house), $router.push('listHouses'))]" class="md-raised md-primary">Criar</md-button>
@@ -93,24 +88,10 @@
 </template>
 
 <script>
-	import Vue from 'vue'
-    import { MdButton, MdField, MdSwitch, MdContent } from 'vue-material/dist/components'
-    import { MdAutocomplete, MdMenu, MdDialog, MdDialogAlert } from 'vue-material/dist/components'
-    import 'vue-material/dist/vue-material.min.css'
-    import 'vue-material/dist/theme/default.css'
-    
-    Vue.use(MdButton)
-    Vue.use(MdField)
-    Vue.use(MdSwitch)
-    Vue.use(MdMenu)
-    Vue.use(MdDialog, MdDialogAlert)
-    Vue.use(MdAutocomplete)
-    
-	import { mapState, mapMutations, mapActions } from 'vuex'
-	import { required, minLength, maxLength, alpha } from 'vuelidate/lib/validators'
- 
 	import BR_STATES from '../../Estados.json'
-
+	import { required } from 'vuelidate/lib/validators'
+	import { mapState, mapMutations, mapActions } from 'vuex'
+	
 	let estados_br = [];
 
 	BR_STATES.forEach(est => {
@@ -125,7 +106,7 @@
         	vl_garagem: null, vl_quarto: null, vl_sala: null,
         	estados: estados_br,
 		    hasMessages: false,
-		    submitStatus: false,
+		    submitStatus: false
         }),
 
 		computed: {
@@ -135,35 +116,16 @@
 			    return {
 			        'md-invalid': this.hasMessages
 			    }
-            },
+            }
 		},
 
 		validations: {
-			vl_cidade: {
-            	required,
-            	alpha
-            },
-
-            vl_rua: {
-            	required,
-            	alpha
-            },
-
-            vl_area: {
-            	required
-            },
-
-            vl_garagem: {
-            	required
-            },
-
-            vl_quarto: {
-            	required
-            },
-
-            vl_sala: {
-            	required
-            },
+			vl_cidade: { required },
+            vl_rua: { required },
+            vl_area: { required },
+            vl_garagem: { required },
+            vl_quarto: { required },
+            vl_sala: { required }
         },
 	    
 		methods: {
@@ -174,6 +136,7 @@
 			...mapMutations([
                 'CLEAR_Arr'
 			]),
+
 			validateCidade(value) {
                 this.vl_cidade = value;
                 this.$v.vl_cidade.$touch()
@@ -206,15 +169,13 @@
 
 			submit() {
 				this.submitStatus = true;
-
                 // stop here if form is invalid
                 this.$v.$touch();
                 if (this.$v.$invalid) {
                     return;
                 }
-
 			}
-		},
+		}
 	}
 </script>
 
@@ -222,7 +183,7 @@
 	#slice {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: space-between
 	}
 
 	#content {
@@ -252,7 +213,7 @@
 		min-width: 185px;
         padding-top: 28px;
         font-size: 16px;
-        color: rgba(0,0,0,0.54);
+        color: rgba(0,0,0,0.54)
 	}
 
 	.align-buttons {

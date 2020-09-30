@@ -41,17 +41,9 @@
 </template>
 
 <script>
-    import Vue from 'vue'
-    import { MdCard } from 'vue-material/dist/components'
-    import 'vue-material/dist/vue-material.min.css'
-    import 'vue-material/dist/theme/default.css'
-
     import { mapMutations } from 'vuex'
-    
-    Vue.use(MdCard)
 
     export default {
-        name: 'HelloWorld',
         props: {
             msg: String
         },
@@ -59,20 +51,20 @@
         methods: {
            ...mapMutations([
                 'CLEAR_Arr'
-            ]),
+            ])
         },
     }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
    #card-align {
        display: flex;
        flex-direction: row;
-       justify-content: center;
+       justify-content: center
    }
+
    #card-size {
         width: 430px;
-        height: 430px; 
+        height: 430px
    }
 </style>

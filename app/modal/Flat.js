@@ -4,75 +4,90 @@ const mongoose = require("mongoose");
 const FlatSchema = mongoose.Schema({
   cidade: {
     type: String,
-    lowercase: true
+    lowercase: true,
+    default: "",
+    required: true
   },
 
   rua: {
     type: String,
-    lowercase: true
+    lowercase: true,
+    default: "",
+    required: true,
   },
 
   bairro: {
     type: String,
-    lowercase: true
+    lowercase: true,
+    default: "",
+    required: true
   },
 
   uf: {
     type: String,
     uppercase: true,
+    default: "",
+    required: true
   },
 
   area: {
     type: Number, 
+    default: null,
+    required: true
   },
 
   armario_emb: {
     type: Boolean,
+    default: false,
   },
 
   n_garagem: {
     type: Number, 
-    min: 1, 
-    max: 3,
+    default: null,
   },
 
   n_quarto: {
     type: Number, 
-    min: 1, 
-    max: 3
+    default: null,
+    required: true
   },
 
   n_sala: {
     type: Number, 
-    min: 1, 
-    max: 3
+    default: null,
+    required: true
   },
 
   n_suite: {
     type: Number, 
+    default: null,
   },
   
   n_sala_jantar: {
     type: Number, 
-    min: 1, 
-    max: 4
+    default: null,
   },
   
   portaria_24h: {
     type: Boolean,
+    default: false,
   },
 
   valor_cond: {
     type: Number, 
-    min: 1, 
-    max: 4
+    default: null,
+    required: true
   },
   
   descricao: {
-  	type: String
+  	type: String,
+    default: "",
   },
 
-  updateAt: { type: Date, default: Date.now },
+  updateAt: { 
+    type: Date, 
+    default: Date.now 
+  },
 
 });
 

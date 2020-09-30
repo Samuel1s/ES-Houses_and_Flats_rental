@@ -65,24 +65,14 @@
 		        <md-icon>add</md-icon>  
 		    </md-button>
 	    </div>
+	    <div id="align-back">
+	    	<md-button class="md-primary" @click="$router.push('/')">Voltar</md-button>
+	    </div>	
 	</md-content>    
 </template>
 
 <script>
-    import Vue from 'vue'
-    import { MdList, MdRipple, MdDialog, MdContent } from 'vue-material/dist/components'
-    import { MdDialogConfirm } from 'vue-material/dist/components'
-    import 'vue-material/dist/vue-material.min.css'
-    import 'vue-material/dist/theme/default.css'
- 
-    Vue.use(MdList)
-    Vue.use(MdRipple)
-    Vue.use(MdDialog)
-    Vue.use(MdContent)
-    Vue.use(MdDialogConfirm)
-
 	import { mapState, mapMutations, mapActions } from 'vuex'
-
 
 	export default {
 		data: () => ({
@@ -90,7 +80,7 @@
 			value_portaria: [],
 			expandSingle: false,
 	        active: false,
-	        value: null,
+	        value: null
 	    }),
 
 		components: {},
@@ -131,28 +121,33 @@
 
 		mounted () {
 	        this.$store.dispatch('loadFlats')
-	    },
+	    }
 	}
 </script>
 
 <style scoped>
 	#view-document {
-		height: 67vh;
+		height: 67vh
 	}
 
 	#view-listHouses {
 		display: flex;
         flex-direction: column;
-        align-items: center;   
+        align-items: center  
 	}
 
 	#align-fab {
 		text-align: end;
-		margin: 16px 8px;
+		margin: 16px 8px
+	}
+
+	#align-back {
+		text-align: center;
+		margin: 16px 8px
 	}
 
 	#item-part {
-		display: flex;
+		display: flex
 	}
 
 	#list-width {
@@ -174,6 +169,4 @@
 		width: 10vw;
 		color: rgba(0,0,0,0.54)
 	}
-
-
 </style>

@@ -4,56 +4,68 @@ const mongoose = require("mongoose");
 const HouseSchema = mongoose.Schema({
   cidade: {
     type: String,
-    lowercase: true
+    default: "",
+    lowercase: true,
+    required: true
   },
 
   rua: {
     type: String,
-    lowercase: true
+    default: "",
+    lowercase: true,
+    required: true
   },
 
   bairro: {
     type: String,
-    lowercase: true
+    default: "",
+    lowercase: true,
+    required: true
   },
 
   uf: {
     type: String,
-    uppercase: true
+    default: "",
+    uppercase: true,
+    required: true
   },
 
   area: {
-    type: Number, 
+    type: Number,
+    default: null, 
+    required: true
   },
 
   armario_emb: {
-    type: Boolean
+    type: Boolean,
+    default: false,
   },
 
   n_garagem: {
     type: Number, 
-    min: 1, 
-    max: 3
+    default: null,
   },
   
   n_quarto: {
     type: Number, 
-    min: 1, 
-    max: 3
+    default: null,
+    required: true
   },
 
   n_sala: {
     type: Number, 
-    min: 1, 
-    max: 3,
+    default: null,
+    required: true
   },
 
   n_suite: {
     type: Number, 
+    default: null,
   },  
 
   descricao: {
-  	type: String
+  	type: String,
+    default: "",
   },
 
   updateAt: { type: Date, default: Date.now },
