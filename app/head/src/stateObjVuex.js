@@ -20,7 +20,7 @@ const getInitialStateHouse = () => {
 const getInitialStateFlat = () => {
     return {
         state0: { cidade: "", rua: "", bairro: "", uf: "", area: null, armario_emb: false, 
-            n_garagem: null, n_quarto: null, n_suite: null, n_sala: null, 
+            n_garagem: null, n_quarto: null, n_sala: null, n_suite: null,
             n_sala_jantar: null, portaria_24h: false, valor_cond: null, 
             descricao: ""
         },
@@ -36,7 +36,7 @@ const store = new Vuex.Store({
 		},
 
         flat : { cidade: "", rua: "", bairro: "", uf: "", area: null, armario_emb: false, 
-            n_garagem: null, n_quarto: null, n_suite: null, n_sala: null, 
+            n_garagem: null, n_quarto: null, n_sala: null, n_suite: null,
             n_sala_jantar: null, portaria_24h: false, valor_cond: null, 
             descricao: ""
         },
