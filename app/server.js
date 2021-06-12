@@ -1,7 +1,6 @@
-require("dotenv").config();
-
-const userRouter = require('./routes/posts');
 var express = require('express'), cors = require('cors'), mongoose = require('mongoose');
+const userRouter = require('./routes/posts');
+require("dotenv").config();
 
 const app = express();
 
